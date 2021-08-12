@@ -1,10 +1,7 @@
 <resources>
     <string name="app_name">App Super</string>
-    <string name="hello_awesome_linear">Hello Awesome Linear!</string>
-    <string name="relative_layout">Relative Layout</string>
-    <string name="linear_layout">Linear Layout</string>
-    <string name="frame_layout">Frame Layout</string>
-    <string name="constraint_layout">Constraint Layout</string>
-    <string name="coordinator_layout">Coordinator Layout</string>
-    <string name="hello_awesome_relative">Hello Awesome Relative!</string>
+    <string name="empty">-</string>
+    <string name="mesure">Suivre mon poids</string>
+    <string name="mesure_enable">Activé</string>
+    <string name="mesure_disable">Désactivé</string>
 </resources>
