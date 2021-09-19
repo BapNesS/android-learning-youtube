@@ -9,6 +9,50 @@
         android:id="@+id/mainFragment"
         android:name="com.baptistecarlier.android.appsuper.ui.MainFragment"
         android:label="@string/app_name"
-        tools:layout="@layout/fragment_main" />
+        tools:layout="@layout/fragment_main">
+        <action
+            android:id="@+id/action_mainFragment_to_weightFragment"
+            app:destination="@id/weightFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_settingsFragment"
+            app:destination="@id/navSettings" />
+    </fragment>
+    <fragment
+        android:id="@+id/weightFragment"
+        android:name="com.baptistecarlier.android.appsuper.ui.WeightFragment"
+        android:label="WeightFragment"
+        tools:layout="@layout/fragment_weight" />
+
+    <navigation android:id="@+id/navSettings"
+        app:startDestination="@id/settingsFragment">
+        <fragment
+            android:id="@+id/settingsFragment"
+            android:name="com.baptistecarlier.android.appsuper.ui.settings.SettingsFragment"
+            android:label="SettingsFragment"
+            tools:layout="@layout/fragment_settings">
+            <action
+                android:id="@+id/action_settingsFragment_to_libsFragment"
+                app:destination="@id/libsFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/libDetailsFragment"
+            android:name="com.baptistecarlier.android.appsuper.ui.settings.LibDetailsFragment"
+            android:label="LibDetailsFragment"
+            tools:layout="@layout/fragment_lib_details">
+            <argument
+                android:name="position"
+                android:defaultValue="0"
+                app:argType="integer" />
+        </fragment>
+        <fragment
+            android:id="@+id/libsFragment"
+            android:name="com.baptistecarlier.android.appsuper.ui.settings.LibsFragment"
+            android:label="LibsFragment"
+            tools:layout="@layout/fragment_libs">
+            <action
+                android:id="@+id/action_libsFragment_to_libDetailsFragment"
+                app:destination="@id/libDetailsFragment" />
+        </fragment>
+    </navigation>
 
 </navigation>

@@ -18,6 +18,8 @@ class StorageRepository(context: Context) {
 
     companion object {
         val MESURE_WEIGHT : Preferences.Key<Boolean> = booleanPreferencesKey("MESURE_WEIGHT")
+        val BIOMETRIC_AUTH : Preferences.Key<Boolean> = booleanPreferencesKey("BIOMETRIC_AUTH")
+        val ALERTING : Preferences.Key<Boolean> = booleanPreferencesKey("ALERT")
     }
 
     private val settings: DataStore<Preferences> = context.settings
@@ -35,8 +37,39 @@ class StorageRepository(context: Context) {
             throw it
         }
     }.map { preferences ->
-        // true : valeur par défaut
         preferences[MESURE_WEIGHT] ?: true
+    }
+
+    suspend fun updateBiometricAuth(newName: Boolean) {
+        settings.edit {
+            it[BIOMETRIC_AUTH] = newName
+        }
+    }
+
+    val biometricAuthFlow: Flow<Boolean> = settings.data.catch {
+        if (it is IOException) {
+            emit(emptyPreferences())
+        } else {
+            throw it
+        }
+    }.map { preferences ->
+        preferences[BIOMETRIC_AUTH] ?: false
+    }
+
+    suspend fun updateAlerting(newName: Boolean) {
+        settings.edit {
+            it[ALERTING] = newName
+        }
+    }
+
+    val alertingFlow: Flow<Boolean> = settings.data.catch {
+        if (it is IOException) {
+            emit(emptyPreferences())
+        } else {
+            throw it
+        }
+    }.map { preferences ->
+        preferences[ALERTING] ?: false
     }
 
 }

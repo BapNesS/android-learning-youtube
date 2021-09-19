@@ -4,4 +4,9 @@
     <string name="mesure">Suivre mon poids</string>
     <string name="mesure_enable">Activé</string>
     <string name="mesure_disable">Désactivé</string>
+    <string name="settings">Paramètres</string>
+    <string name="settings_biometricauth">Identification biométrique</string>
+    <string name="settings_alerting">Notification de rappel</string>
+    <string name="weight">Poids</string>
+    <string name="libs">Librairies Open-source</string>
 </resources>
