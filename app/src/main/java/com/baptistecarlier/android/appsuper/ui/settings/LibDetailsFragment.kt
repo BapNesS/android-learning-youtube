@@ -7,13 +7,14 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.baptistecarlier.android.appsuper.R
+import com.baptistecarlier.android.appsuper.databinding.FragmentLibDetailsBinding
 import com.baptistecarlier.android.appsuper.repository.libs
 
 class LibDetailsFragment : Fragment() {
 
-    private var title: TextView? = null
-    private var author: TextView? = null
-    private var licence: TextView? = null
+    private var _binding: FragmentLibDetailsBinding? = null
+    // onCreate jusqu'au onDestroyView
+    private val binding get() = _binding!!
 
     private val position: Int?
         get() = arguments?.let { LibDetailsFragmentArgs.fromBundle(it).position }
@@ -22,27 +23,21 @@ class LibDetailsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.fragment_lib_details, container, false)
+        _binding = FragmentLibDetailsBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initViews()
-    }
-
-    private fun initViews() {
-        title = view?.findViewById(R.id.title)
-        author = view?.findViewById(R.id.author)
-        licence = view?.findViewById(R.id.licence)
         initDatas()
     }
 
     private fun initDatas() {
         position?.let { position ->
             libs[position].let {
-                title?.text = it.title
-                author?.text = it.author
-                licence?.text = it.licence
+                binding.title.text = it.title
+                binding.author.text = it.author
+                binding.licence.text = it.licence
             }
         }
     }

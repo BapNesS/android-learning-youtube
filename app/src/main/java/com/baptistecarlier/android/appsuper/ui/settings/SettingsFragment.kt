@@ -11,13 +11,15 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.baptistecarlier.android.appsuper.R
+import com.baptistecarlier.android.appsuper.databinding.FragmentLibsBinding
+import com.baptistecarlier.android.appsuper.databinding.FragmentSettingsBinding
 import com.baptistecarlier.android.appsuper.vm.settings.SettingsViewModel
 
 class SettingsFragment : Fragment() {
 
-    private var biometricAuthSwitchCompat: SwitchCompat? = null
-    private var alertingSwitchCompat: SwitchCompat? = null
-    private var libsButton: Button? = null
+    private var _binding: FragmentSettingsBinding? = null
+    // onCreate jusqu'au onDestroyView
+    private val binding get() = _binding!!
 
     private val viewModel: SettingsViewModel by viewModels()
 
@@ -25,40 +27,34 @@ class SettingsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.fragment_settings, container, false)
+        _binding = FragmentSettingsBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initViews()
         initListeners()
         initObservers()
     }
 
-    private fun initViews() {
-        biometricAuthSwitchCompat = view?.findViewById(R.id.switcher_biometricauth)
-        alertingSwitchCompat = view?.findViewById(R.id.switcher_alerting)
-        libsButton = view?.findViewById(R.id.libs)
-    }
-
     private fun initListeners() {
-        biometricAuthSwitchCompat?.setOnCheckedChangeListener { _, newValue ->
+        binding.switcherBiometricauth.setOnCheckedChangeListener { _, newValue ->
             viewModel.updateBiometricAuth(newValue)
         }
-        alertingSwitchCompat?.setOnCheckedChangeListener { _, newValue ->
+        binding.switcherAlerting.setOnCheckedChangeListener { _, newValue ->
             viewModel.updateAlerting(newValue)
         }
-        libsButton?.setOnClickListener {
+        binding.libs.setOnClickListener {
             findNavController().navigate(R.id.action_settingsFragment_to_libsFragment)
         }
     }
 
     private fun initObservers() {
         viewModel.biometricAuth.observe(this.viewLifecycleOwner, Observer {
-            biometricAuthSwitchCompat?.isChecked = it
+            binding.switcherBiometricauth.isChecked = it
         })
         viewModel.alerting.observe(this.viewLifecycleOwner, Observer {
-            alertingSwitchCompat?.isChecked = it
+            binding.switcherAlerting.isChecked = it
         })
     }
 
