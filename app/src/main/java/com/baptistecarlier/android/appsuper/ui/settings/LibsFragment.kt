@@ -7,8 +7,6 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.baptistecarlier.android.appsuper.R
-import com.baptistecarlier.android.appsuper.databinding.FragmentLibDetailsBinding
 import com.baptistecarlier.android.appsuper.databinding.FragmentLibsBinding
 import com.baptistecarlier.android.appsuper.repository.libs
 

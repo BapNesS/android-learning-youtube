@@ -18,3 +18,5 @@ Une super app pour faire son suivi fitness.
 * `Kotlin Flow`
 * `MVVM`
 * `AndroidX DataStore`
+* `ViewModel`
+* Injection de dépendances avec `Hilt/Dagger`

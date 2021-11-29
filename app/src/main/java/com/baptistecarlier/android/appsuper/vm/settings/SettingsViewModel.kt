@@ -1,35 +1,32 @@
 package com.baptistecarlier.android.appsuper.vm.settings
 
-import android.app.Application
 import android.util.Log
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.asLiveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.baptistecarlier.android.appsuper.repository.StorageRepository
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
+@HiltViewModel
+class SettingsViewModel
+@Inject
+constructor(
+    private val storageRepository: StorageRepository
+) : ViewModel() {
 
-class SettingsViewModel(application: Application) : AndroidViewModel(application) {
-
-    private val storage = StorageRepository(application)
-
-    val biometricAuth: LiveData<Boolean> = storage.biometricAuthFlow.asLiveData()
-    val alerting: LiveData<Boolean> = storage.alertingFlow.asLiveData()
+    val biometricAuth: LiveData<Boolean> = storageRepository.biometricAuthFlow.asLiveData()
+    val alerting: LiveData<Boolean> = storageRepository.alertingFlow.asLiveData()
 
     fun updateBiometricAuth(newValue: Boolean) {
         viewModelScope.launch {
-            storage.updateBiometricAuth(newValue)
+            storageRepository.updateBiometricAuth(newValue)
             Log.d("TODO", "Biometric auth")
         }
     }
 
     fun updateAlerting(newValue: Boolean) {
         viewModelScope.launch {
-            storage.updateAlerting(newValue)
+            storageRepository.updateAlerting(newValue)
             Log.d("TODO", "Alerting")
         }
     }
