@@ -7,10 +7,12 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.baptistecarlier.android.appsuper.adapter.LibsAdapter
 import com.baptistecarlier.android.appsuper.databinding.FragmentLibsBinding
+import com.baptistecarlier.android.appsuper.domain.model.Library
 import com.baptistecarlier.android.appsuper.repository.libs
 
-class LibsFragment : Fragment() {
+class LibsFragment : Fragment(), LibsAdapter.ItemClickListener {
 
     private var _binding: FragmentLibsBinding? = null
     // onCreate jusqu'au onDestroyView
@@ -30,36 +32,16 @@ class LibsFragment : Fragment() {
     }
 
     private fun initViews() {
-        binding.lib0.let { button ->
-            val position = 0
-            initButton(button, position)
-        }
-        binding.lib1.let { button ->
-            val position = 1
-            initButton(button, position)
-        }
-        binding.lib2.let { button ->
-            val position = 2
-            initButton(button, position)
-        }
-        binding.lib3.let { button ->
-            val position = 3
-            initButton(button, position)
-        }
-        binding.lib4.let { button ->
-            val position = 4
-            initButton(button, position)
-        }
+        binding.recyclerView.adapter = LibsAdapter(libs, this)
     }
 
-    private fun initButton(button: Button, position: Int) {
-        button.text = libs[position].title
-        button.setOnClickListener {
-            val direction = LibsFragmentDirections.actionLibsFragmentToLibDetailsFragment(
-                position = position
-            )
-            findNavController().navigate(direction)
-        }
+    override fun onItemClick(library: Library) {
+        val position = libs.indexOf(library)
+        val direction = LibsFragmentDirections.actionLibsFragmentToLibDetailsFragment(
+            position = position
+        )
+        findNavController().navigate(direction)
     }
 
 }
+
