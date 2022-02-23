@@ -9,7 +9,7 @@ Une super app pour faire son suivi fitness.
 ![./doc/screenshots.png](./doc/screenshots.png)
 
 # 🔗 Liens
- * ♻️ [RecyclerView, Adapter et ViewHolder : les bases](https://youtu.be/dX841eOVKTk)
+ * 🧟 [Build variants, buildtypes, productflavors](https://www.youtube.com/watch?v=OqdVrESAlx4)
  * 🗡️ [Injection de dépendances, partie 2 : Hilt et Dagger](https://youtu.be/lXbiQgnjiB0)
  * 📏 [Passage au ViewBinding](https://youtu.be/SDmrcuv6Dzg)
  * 🗃️ [Android ViewModel et Jetpack DataStore](https://youtu.be/3qo6iG2xaas)

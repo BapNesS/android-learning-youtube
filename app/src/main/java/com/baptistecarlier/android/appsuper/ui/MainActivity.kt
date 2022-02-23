@@ -1,11 +1,13 @@
 package com.baptistecarlier.android.appsuper.ui
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
+import com.baptistecarlier.android.appsuper.Constants
 import com.baptistecarlier.android.appsuper.R
 import com.baptistecarlier.android.appsuper.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -26,6 +28,8 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         appBarConfiguration = AppBarConfiguration(navController.graph)
         setupActionBarWithNavController(navController, appBarConfiguration)
+
+        Log.d("BCR", "Url = ${Constants.backend_url}")
     }
 
     override fun onSupportNavigateUp(): Boolean {
