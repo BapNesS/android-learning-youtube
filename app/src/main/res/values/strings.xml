@@ -9,4 +9,5 @@
     <string name="settings_alerting">Notification de rappel</string>
     <string name="weight">Poids</string>
     <string name="libs">Librairies Open-source</string>
+    <string name="title_activity_compose">ComposeActivity</string>
 </resources>

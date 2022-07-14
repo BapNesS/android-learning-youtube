@@ -4,39 +4,35 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.compose.foundation.layout.padding
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.ComposeView
+import androidx.compose.ui.unit.dp
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.baptistecarlier.android.appsuper.R
-import com.baptistecarlier.android.appsuper.databinding.FragmentMainBinding
+import com.baptistecarlier.android.appsuper.ui.component.main.MainView
+import com.baptistecarlier.android.appsuper.ui.theme.AppSuperTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainFragment : Fragment() {
 
-    private var _binding: FragmentMainBinding? = null
-    // onCreate jusqu'au onDestroyView
-    private val binding get() = _binding!!
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
-        _binding = FragmentMainBinding.inflate(inflater, container, false)
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        initListeners()
-    }
-
-    private fun initListeners() {
-        binding.settings.setOnClickListener {
-            findNavController().navigate(R.id.action_mainFragment_to_settingsFragment)
-        }
-        binding.weight.setOnClickListener {
-            findNavController().navigate(R.id.action_mainFragment_to_weightFragment)
+        return ComposeView(requireContext()).apply {
+            setContent {
+                AppSuperTheme {
+                    MainView(
+                        modifier = Modifier.padding(32.dp),
+                        goSettings = { findNavController().navigate(R.id.action_mainFragment_to_settingsFragment) },
+                        goWeight = { findNavController().navigate(R.id.action_mainFragment_to_weightFragment) }
+                    )
+                }
+            }
         }
     }
-
 }
+
