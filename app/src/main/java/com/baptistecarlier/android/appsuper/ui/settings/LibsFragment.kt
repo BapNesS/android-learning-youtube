@@ -4,44 +4,56 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
+import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.baptistecarlier.android.appsuper.adapter.LibsAdapter
-import com.baptistecarlier.android.appsuper.databinding.FragmentLibsBinding
 import com.baptistecarlier.android.appsuper.domain.model.Library
 import com.baptistecarlier.android.appsuper.repository.libs
+import com.baptistecarlier.android.appsuper.ui.component.settings.ListLibsView
+import com.baptistecarlier.android.appsuper.ui.theme.AppSuperTheme
 
-class LibsFragment : Fragment(), LibsAdapter.ItemClickListener {
-
-    private var _binding: FragmentLibsBinding? = null
-    // onCreate jusqu'au onDestroyView
-    private val binding get() = _binding!!
+class LibsFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentLibsBinding.inflate(inflater, container, false)
-        return binding.root
+        return ComposeView(requireContext())
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initViews()
+        (view as ComposeView).init()
     }
 
-    private fun initViews() {
-        binding.recyclerView.adapter = LibsAdapter(libs, this)
+    private fun ComposeView.init() {
+        this.setContent {
+            AppSuperTheme {
+                ListLibsView(libs) { onItemClick(it) }
+            }
+        }
     }
 
-    override fun onItemClick(library: Library) {
+    private fun onItemClick(library: Library) {
         val position = libs.indexOf(library)
         val direction = LibsFragmentDirections.actionLibsFragmentToLibDetailsFragment(
             position = position
         )
         findNavController().navigate(direction)
     }
-
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

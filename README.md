@@ -9,7 +9,13 @@ Une super app pour faire son suivi fitness.
 ![./doc/screenshots.png](./doc/screenshots.png)
 
 # 🔗 Liens
+
+ * ✨ [Initialisation de Compose et interopérabilité XML Composable](https://youtu.be/SD1c7BKiKxM)
+ * 🤔 [Mon avis sur Jetpack Compose en 2022](https://youtu.be/By0uHFgWgeA)
+ * 🔥 [Firebase App Distribution : upload via web, via Gradle (sécurisé)](https://youtu.be/g58IlBLuy7U)
+ * 🔥 [Firebase : initialisation d'un projet pour Android](https://youtu.be/B9mIFyfIwfg)
  * 🧟 [Build variants, buildtypes, productflavors](https://www.youtube.com/watch?v=OqdVrESAlx4)
+ * ♻ [RecyclerView, Adapter et ViewHolder : les bases des listes](https://youtu.be/dX841eOVKTk)
  * 🗡️ [Injection de dépendances, partie 2 : Hilt et Dagger](https://youtu.be/lXbiQgnjiB0)
  * 📏 [Passage au ViewBinding](https://youtu.be/SDmrcuv6Dzg)
  * 🗃️ [Android ViewModel et Jetpack DataStore](https://youtu.be/3qo6iG2xaas)
@@ -32,3 +38,4 @@ Une super app pour faire son suivi fitness.
 * AndroidX DataStore
 * ViewModel
 * Hilt
+* Jetpack Compose
