@@ -4,54 +4,36 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.StringRes
+import androidx.compose.foundation.layout.Column
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
-import com.baptistecarlier.android.appsuper.R
-import com.baptistecarlier.android.appsuper.databinding.FragmentWeightBinding
+import com.baptistecarlier.android.appsuper.ui.component.settings.WeightView
 import com.baptistecarlier.android.appsuper.vm.WeightViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class WeightFragment : Fragment() {
 
-    private var _binding: FragmentWeightBinding? = null
-    // onCreate jusqu'au onDestroyView
-    private val binding get() = _binding!!
-
     private val viewModel: WeightViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentWeightBinding.inflate(inflater, container, false)
-        return binding.root
-    }
+    ) = ComposeView(requireContext())
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initListeners()
-        initObservers()
+        (view as ComposeView).init(viewModel)
     }
 
-    private fun initListeners() {
-        binding.switcher.setOnCheckedChangeListener { _, newValue ->
-            viewModel.updateTo(newValue)
+    private fun ComposeView.init(viewModel: WeightViewModel) = setContent {
+        Column {
+            val activated = viewModel.activated.collectAsState().value
+            WeightView(activated) { viewModel.updateTo(it) }
         }
-    }
-
-    private fun initObservers() {
-        viewModel.activated.observe(viewLifecycleOwner, Observer {
-            binding.switcher.isChecked = it
-            @StringRes val stringRes = if (it) {
-                R.string.mesure_enable
-            } else {
-                R.string.mesure_disable
-            }
-            binding.textView.setText(stringRes)
-        })
     }
 
 }

@@ -10,6 +10,8 @@ Une super app pour faire son suivi fitness.
 
 # 🔗 Liens
 
+ * 🔀 [LiveData et StateFlow avec Jetpack Compose](https://youtu.be/DZayh7xmkmE)
+ * ♻ [LazyColumn de Jetpack Compose : comment l'utiliser à la place de la RecyclerView](https://youtu.be/yiti5ELQJno)
  * ✨ [Initialisation de Compose et interopérabilité XML Composable](https://youtu.be/SD1c7BKiKxM)
  * 🤔 [Mon avis sur Jetpack Compose en 2022](https://youtu.be/By0uHFgWgeA)
  * 🔥 [Firebase App Distribution : upload via web, via Gradle (sécurisé)](https://youtu.be/g58IlBLuy7U)
