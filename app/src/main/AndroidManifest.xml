@@ -11,15 +11,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppSuper">
         <activity
-            android:name=".ui.ComposeActivity"
+            android:name=".ui.activity.NavigableActivity"
             android:exported="true"
-            android:label="@string/title_activity_compose"
-            android:theme="@style/Theme.AppSuper.NoActionBar">
-            <!--<intent-filter>
+            android:label="@string/title_activity_navigable"
+            android:theme="@style/Theme.AppSuper">
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
+            </intent-filter>
         </activity>
         <activity
             android:name=".ui.MainActivity"
@@ -27,7 +26,6 @@
             android:theme="@style/Theme.AppSuper.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
