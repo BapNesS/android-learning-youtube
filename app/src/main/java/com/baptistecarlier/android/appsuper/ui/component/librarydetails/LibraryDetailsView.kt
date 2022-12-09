@@ -12,7 +12,7 @@ import androidx.compose.ui.unit.dp
 import com.baptistecarlier.android.appsuper.ui.theme.AppSuperTheme
 
 @Composable
-fun DetailView(id: Int, onGoBack: () -> Unit) {
+fun LibraryDetailsView(id: Int, onGoBack: () -> Unit) {
     Column(modifier = Modifier.padding(24.dp)) {
         Text(
             style = MaterialTheme.typography.h6,
@@ -33,6 +33,6 @@ fun DetailView(id: Int, onGoBack: () -> Unit) {
 @Composable
 fun DetailViewPreview() {
     AppSuperTheme() {
-        DetailView(99) { }
+        LibraryDetailsView(99) { }
     }
 }

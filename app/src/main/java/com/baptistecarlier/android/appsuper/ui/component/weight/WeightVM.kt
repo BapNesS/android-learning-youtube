@@ -1,7 +1,5 @@
-package com.baptistecarlier.android.appsuper.vm
+package com.baptistecarlier.android.appsuper.ui.component.weight
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.baptistecarlier.android.appsuper.repository.StorageRepository
@@ -11,9 +9,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class WeightViewModel
-@Inject
-constructor(
+class WeightVM @Inject constructor(
     private val storageRepository: StorageRepository
 ) : ViewModel() {
 

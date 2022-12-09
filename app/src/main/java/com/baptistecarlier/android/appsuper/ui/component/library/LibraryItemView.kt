@@ -12,7 +12,7 @@ import com.baptistecarlier.android.appsuper.domain.model.Library
 import com.baptistecarlier.android.appsuper.ui.theme.AppSuperTheme
 
 @Composable
-fun LibItem(item: Library, onClick: () -> Unit) {
+fun LibraryItemView(item: Library, onClick: () -> Unit) {
     Text(
         modifier = Modifier
             .clickable { onClick() }
@@ -24,9 +24,9 @@ fun LibItem(item: Library, onClick: () -> Unit) {
 
 @Preview
 @Composable
-fun LibItemPreview() {
+fun LibraryItemViewPreview() {
     AppSuperTheme {
-        LibItem(item = Library("Titre", "Auteur", "Licence")) { }
+        LibraryItemView(item = Library("Titre", "Auteur", "Licence")) { }
     }
 }
 

@@ -19,6 +19,7 @@ import com.baptistecarlier.android.appsuper.ui.theme.AppSuperTheme
 
 @Composable
 fun WeightView(
+    modifier: Modifier = Modifier,
     activated: Boolean,
     onCheckedChange: (Boolean) -> Unit
 ) {
@@ -29,11 +30,7 @@ fun WeightView(
         R.string.mesure_disable
     }
 
-    Column(
-        Modifier
-            .fillMaxWidth()
-            .padding(16.dp)
-    ) {
+    Column(modifier.fillMaxWidth()) {
 
         Text(
             modifier = Modifier.fillMaxWidth(),
@@ -58,6 +55,6 @@ fun WeightView(
 @Composable
 fun WeightViewPreview() {
     AppSuperTheme {
-        WeightView(true) { }
+        WeightView(activated = true) { }
     }
 }

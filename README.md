@@ -10,6 +10,7 @@ Une super app pour faire son suivi fitness.
 
 # 🔗 Liens
 
+* [Let's DEV: Je termine de remplacer les Fragments par Compose](https://youtu.be/Bacomk0DYNw)
 * 🚉 [Navigation Hoisting, arguments et SavedStateHandle dans ViewModel](https://youtu.be/k0vCLgAPBkI)
 * 🚉 [Jetpack Compose : Navigation avec le NavHost, Routes, et sealed class](https://youtu.be/3kyYmJyAivk)
 * 🔀 [LiveData et StateFlow avec Jetpack Compose](https://youtu.be/DZayh7xmkmE)

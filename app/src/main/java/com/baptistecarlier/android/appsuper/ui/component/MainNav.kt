@@ -1,48 +1,67 @@
 package com.baptistecarlier.android.appsuper.ui.component
 
-import android.util.Log
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
-import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.SavedStateHandle
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.NavType
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.baptistecarlier.android.appsuper.ui.navigation.Detail
-import com.baptistecarlier.android.appsuper.ui.navigation.Home
-import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
+import com.baptistecarlier.android.appsuper.repository.libs
+import com.baptistecarlier.android.appsuper.ui.component.library.LibraryView
+import com.baptistecarlier.android.appsuper.ui.component.librarydetails.LibraryDetailsScreen
+import com.baptistecarlier.android.appsuper.ui.component.main.MainView
+import com.baptistecarlier.android.appsuper.ui.component.settings.SettingsScreen
+import com.baptistecarlier.android.appsuper.ui.component.weight.WeightScreen
+import com.baptistecarlier.android.appsuper.ui.navigation.Library
+import com.baptistecarlier.android.appsuper.ui.navigation.LibraryDetails
+import com.baptistecarlier.android.appsuper.ui.navigation.Main
+import com.baptistecarlier.android.appsuper.ui.navigation.Screen
+import com.baptistecarlier.android.appsuper.ui.navigation.Settings
+import com.baptistecarlier.android.appsuper.ui.navigation.Weight
 
-
-@HiltViewModel
-class DetailVM @Inject constructor(savedStateHandle: SavedStateHandle) : ViewModel() {
-    init {
-        val id = savedStateHandle.get<Int>("id")
-        Log.d("BDM", "VM id : $id")
-    }
-}
 
 @Composable
 fun MainNav() {
     val navController = rememberNavController()
     NavHost(
         navController = navController,
-        startDestination = Home.route
+        startDestination = Main.route
     ) {
-        composable(Home.route) {
-            HomeView {
-                navController.navigate(Detail.giveId("43"))
+        val navigate: (Screen) -> Unit = { navController.navigate(it.route) }
+
+        composable(Main.route) {
+            MainView(
+                modifier = Modifier.padding(32.dp),
+                navigate = navigate
+            )
+        }
+        composable(Weight.route) {
+            WeightScreen(
+                modifier = Modifier.padding(32.dp)
+            )
+        }
+        composable(Settings.route) {
+            SettingsScreen(
+                modifier = Modifier.padding(32.dp),
+                navigate = navigate)
+        }
+        composable(Library.route) {
+            LibraryView(libs) { library ->
+                val position = libs.indexOf(library)
+                navController.navigate(LibraryDetails.giveId(position.toString()))
             }
         }
-        composable(route = Detail.route,
-            arguments = listOf(navArgument("id") { type = NavType.IntType })) { backStackEntry ->
-            val id : Int = backStackEntry.arguments?.getInt("id") ?: 10
-
-            val viewModel : DetailVM = hiltViewModel()
-            DetailView(id) { navController.popBackStack() }
+        composable(
+            route = LibraryDetails.route,
+            arguments = listOf(navArgument("id") { defaultValue = 0 })
+        ) {
+            LibraryDetailsScreen(
+                modifier = Modifier.padding(32.dp)
+            )
         }
+
     }
 }
+
